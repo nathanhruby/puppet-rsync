@@ -132,7 +132,7 @@ class rsync::server inherits rsync {
     # XXX: nrh: turn this into a template and populate a file{} on /etc/rsyncd.conf with generate() or inline_template()
     exec {"compile fragements":
         refreshonly => true,
-        command     => "ls $rsync_fragments/frag-* 1>/dev/null 2>/dev/null && if [ $? -eq 0 ]; then cat $rsync_fragments/header $rsync_fragments/frag-* > /etc/rsync.conf; else cat $rsync_fragments/header > $rsync_config; fi; $(exit 0)",
+        command     => "ls $rsync_fragments/frag-* 1>/dev/null 2>/dev/null && if [ $? -eq 0 ]; then cat $rsync_fragments/header $rsync_fragments/frag-* > $rsync_config; else cat $rsync_fragments/header > $rsync_config; fi; $(exit 0)",
         subscribe   => File["$rsync_fragments/header"],
         path        => "/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin",
     } # exec
