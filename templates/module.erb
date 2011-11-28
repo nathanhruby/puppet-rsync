@@ -11,8 +11,8 @@ gid             = <%= gid %>
 incoming chmod  = <%= incoming_chmod %>
 outgoing chmod  = <%= outgoing_chmod %>
 <% if comment != :undef %>comment               = <%= comment %><% end %>
-<% if motd != :undef %>motd file                = /etc/rsync-motd-<%= name %><% end %>
-<% if hosts_allowed != :undef %>hosts allowed                = <%= hosts_allowed %><% end %>
+<% if hosts_allow != :undef %>hosts allow           = <%= hosts_allow %><% end %>
 <% if exclude != :undef %>exclude               = <%= exclude %><% end %>
+<% if motd != :undef %>motd file                = /etc/rsync-motd-<%= name %><% end %>
 
 
