@@ -10,7 +10,7 @@ class rsync::server inherits rsync {
 
     include xinetd
 
-    $rsync_config = "/etc/rsyncd.conf"
+    $rsync_config = "/etc/rsync.conf"
     $rsync_fragments = "/etc/rsync.d"
     $rsync_use_include = versioncmp($rsync_version, '3.1.0') ? {
         '-1'    => false,
