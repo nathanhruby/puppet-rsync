@@ -31,6 +31,8 @@ class rsync::server inherits rsync {
     #   $gid            - gid of rsync server, defaults to 0
     #   $incoming_chmod - incoming file mode, defaults to 644
     #   $outgoing_chmod - outgoing file mode, defaults to 644
+    #   $hosts_allow    - string of allowd hosts that can access this module
+    #   $exclude        - exclude these dirs
     #
     # Actions:
     #   sets up an rsync server
@@ -45,7 +47,7 @@ class rsync::server inherits rsync {
     #       require => File["$base"],
     #   } # rsync::server::module
     #
-    define module ($path, $comment = undef, $motd = undef, $read_only = 'yes', $write_only = 'no', $list = 'yes', $uid = '0', $gid = '0', $incoming_chmod = '644', $outgoing_chmod = '644') {
+    define module ($path, $comment = undef, $motd = undef, $read_only = 'yes', $write_only = 'no', $list = 'yes', $uid = '0', $gid = '0', $incoming_chmod = '644', $outgoing_chmod = '644', $hosts_allow = undef, $exclude = undef) {
         if $motd {
             file { "/etc/rsync-motd-$name":
                 source => "puppet:///modules/rsync/motd-$motd",
@@ -73,6 +75,8 @@ class rsync::server inherits rsync {
     #   $gid            - gid of rsync server, defaults to 0
     #   $incoming_chmod - incoming file mode, defaults to 644
     #   $outgoing_chmod - outgoing file mode, defaults to 644
+    #   $hosts_allow    - string of allowd hosts that can access this module
+    #   $exclude        - exclude these dirs
     #
     # Actions:
     #   sets up an rsync server
@@ -87,7 +91,7 @@ class rsync::server inherits rsync {
     #       require => File["$base"],
     #   } # rsync::server::module_file
     #
-    define module_file ($path, $comment = undef, $motd = undef, $read_only = 'yes', $write_only = 'no', $list = 'yes', $uid = '0', $gid = '0', $incoming_chmod = '644', $outgoing_chmod = '644') {
+    define module_file ($path, $comment = undef, $motd = undef, $read_only = 'yes', $write_only = 'no', $list = 'yes', $uid = '0', $gid = '0', $incoming_chmod = '644', $outgoing_chmod = '644', $hosts_allow = undef, $exclude = undef) {
         if $motd {
             file { "/etc/rsync-motd-$name":
                 source => "puppet:///modules/rsync/motd-$motd",
